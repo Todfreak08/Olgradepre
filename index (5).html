@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Grade Report</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#eaf4ff;
+    color:#333;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    background:#1e3a8a;
+    color:white;
+    width:100%;
+    padding:15px 20px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+.header-container{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.logo-box{
+    width:90px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo-box img{
+    width:70px;
+    height:70px;
+    object-fit:cover;
+    border-radius:50%;
+    background:white;
+    padding:5px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.3);
+}
+
+.title-section{
+    flex:1;
+    text-align:center;
+}
+
+.title-section h1{
+    font-size:38px;
+    margin-bottom:5px;
+}
+
+.title-section p{
+    font-size:16px;
+    opacity:0.9;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container{
+    width:95%;
+    max-width:1200px;
+    margin:40px auto;
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.container h2{
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:10px;
+    font-size:32px;
+}
+
+.course{
+    text-align:center;
+    margin-bottom:35px;
+    color:#555;
+    font-size:17px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:18px;
+    margin-bottom:35px;
+}
+
+.form input{
+    width:100%;
+    padding:14px;
+    border:2px solid #d1d5db;
+    border-radius:12px;
+    font-size:15px;
+    outline:none;
+    transition:0.3s;
+}
+
+.form input:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 8px rgba(37,99,235,0.3);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons{
+    grid-column:1/-1;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:10px;
+}
+
+button{
+    padding:13px 28px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.save{
+    background:#1e3a8a;
+    color:white;
+}
+
+.save:hover{
+    background:#2563eb;
+    transform:translateY(-2px);
+}
+
+.clear{
+    background:#dc2626;
+    color:white;
+}
+
+.clear:hover{
+    background:#ef4444;
+    transform:translateY(-2px);
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-container{
+    width:100%;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:700px;
+}
+
+table th,
+table td{
+    border:1px solid #d1d5db;
+    padding:14px;
+    text-align:center;
+    font-size:15px;
+}
+
+table th{
+    background:#1e3a8a;
+    color:white;
+}
+
+table tr:nth-child(even){
+    background:#f1f5f9;
+}
+
+table tr:hover{
+    background:#dbeafe;
+    transition:0.3s;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    margin-top:auto;
+    text-align:center;
+    background:#1e3a8a;
+    color:white;
+    padding:18px;
+    font-size:15px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:992px){
+
+    .title-section h1{
+        font-size:30px;
+    }
+
+    .container{
+        padding:25px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    header{
+        padding:20px 15px;
+    }
+
+    .header-container{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .logo-box{
+        width:auto;
+    }
+
+    .logo-box img{
+        width:65px;
+        height:65px;
+    }
+
+    .title-section h1{
+        font-size:26px;
+    }
+
+    .title-section p{
+        font-size:14px;
+    }
+
+    .container{
+        width:95%;
+        padding:20px;
+        margin:25px auto;
+    }
+
+    .container h2{
+        font-size:26px;
+    }
+
+    .course{
+        font-size:15px;
+    }
+
+    .buttons{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    button{
+        width:100%;
+        max-width:300px;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .title-section h1{
+        font-size:22px;
+    }
+
+    .title-section p{
+        font-size:13px;
+    }
+
+    .logo-box img{
+        width:58px;
+        height:58px;
+    }
+
+    .form{
+        grid-template-columns:1fr;
+    }
+
+    .form input{
+        font-size:14px;
+    }
+
+    table th,
+    table td{
+        font-size:13px;
+        padding:10px;
+    }
+
+    footer{
+        font-size:13px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="header-container">
+
+        <div class="logo-box">
+            <img src="bsit.png" alt="BSIT Logo">
+        </div>
+
+        <div class="title-section">
+            <h1>Student Grade Report</h1>
+            <p>Passi City College</p>
+        </div>
+
+        <div class="logo-box">
+            <img src="passi-city-college.jpg" alt="PCC Logo">
+        </div>
+
+    </div>
+
+</header>
+
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+
+<div class="container">
+
+    <h2>Passi City College</h2>
+
+    <p class="course">
+        Bachelor of Science in Information Technology
+    </p>
+
+    <!-- FORM -->
+
+    <div class="form">
+
+        <input type="text" id="name" placeholder="Student Name">
+
+        <input type="number" id="quiz" placeholder="Quiz (20%)">
+
+        <input type="number" id="lab" placeholder="Laboratory (30%)">
+
+        <input type="number" id="assign" placeholder="Assignment (10%)">
+
+        <input type="number" id="att" placeholder="Attendance (10%)">
+
+        <input type="number" id="exam" placeholder="Major Exam (30%)">
+
+        <div class="buttons">
+
+            <button class="save" onclick="saveStudent()">
+                Save Student
+            </button>
+
+            <button class="clear" onclick="clearFields()">
+                Clear All
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- TABLE -->
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Quiz</th>
+                    <th>Lab</th>
+                    <th>Assignment</th>
+                    <th>Attendance</th>
+                    <th>Exam</th>
+                    <th>Average</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+
+            <tbody id="tableBody"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+© 2026 Passi City College | School of Information Technology
+</footer>
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+function saveStudent(){
+
+    let name = document.getElementById("name").value.trim();
+
+    let quiz = parseFloat(document.getElementById("quiz").value) || 0;
+
+    let lab = parseFloat(document.getElementById("lab").value) || 0;
+
+    let assign = parseFloat(document.getElementById("assign").value) || 0;
+
+    let att = parseFloat(document.getElementById("att").value) || 0;
+
+    let exam = parseFloat(document.getElementById("exam").value) || 0;
+
+    if(name === ""){
+
+        alert("Please enter student name.");
+        return;
+    }
+
+    // COMPUTE AVERAGE
+
+    let average =
+        (quiz * 0.20) +
+        (lab * 0.30) +
+        (assign * 0.10) +
+        (att * 0.10) +
+        (exam * 0.30);
+
+    // REMARKS
+
+    let remarks = average >= 75
+        ? "Passed"
+        : "Failed";
+
+    // ADD ROW
+
+    let table = document.getElementById("tableBody");
+
+    let row = `
+        <tr>
+            <td>${name}</td>
+            <td>${quiz}</td>
+            <td>${lab}</td>
+            <td>${assign}</td>
+            <td>${att}</td>
+            <td>${exam}</td>
+            <td>${average.toFixed(2)}</td>
+            <td>${remarks}</td>
+        </tr>
+    `;
+
+    table.innerHTML += row;
+
+    clearFields();
+}
+
+// CLEAR FORM
+
+function clearFields(){
+
+    document.getElementById("name").value = "";
+    document.getElementById("quiz").value = "";
+    document.getElementById("lab").value = "";
+    document.getElementById("assign").value = "";
+    document.getElementById("att").value = "";
+    document.getElementById("exam").value = "";
+}
+
+</script>
+
+</body>
+</html>
